@@ -12,3 +12,9 @@ resources/ranks.css
 resources/table.css
 resources/martor-description.css
 sass_processed
+/node_modules/
+/__pycache__/
+/uwsgi.ini
+/websocket/config.js
+/<desired bridge log path>
+/package-lock.json

@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FCDNQ35GK5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FCDNQ35GK5');
+    </script>
     <title>{% block title %}{{ title }} - {{ SITE_LONG_NAME }}{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     {% if misc_config.meta_keywords %}
@@ -27,6 +35,8 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#FFBB33">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    {# Roboto font import #}
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
     {# Chrome 39 for Android colour #}
     <meta name="theme-color" content="#FFBB33">
     {% if og_image %}
@@ -291,7 +301,7 @@
     <footer>
         <span id="footer-content">
             <br>
-            <a style="color: #808080" href="https://dmoj.ca">proudly powered by <b>DMOJ</b></a> |
+            <a style="color: #808080" href="https://github.com/kieulqd/site"> <b>VNOJ</b> Source Code</a> |
             {% if i18n_config.footer %}
                 {{ i18n_config.footer|safe }} |
             {% endif %}

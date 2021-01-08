@@ -18,14 +18,14 @@
 }
 
 a {
-    color: #1958c1;
+    color: #10937f;
 
     &:hover {
-        color: #0645ad;
+        color: #0a5c51;
     }
 
     &:active {
-        color: #faa700;
+        color: black;
     }
 }
 
@@ -112,7 +112,7 @@ body {
     font-size: $base_font_size;
     line-height: 1.231;
     background: $background_light_gray;
-    font-family: "Segoe UI", "Lucida Grande", Arial, sans-serif;
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
     color: #000;
     height: 100%;
 }
@@ -415,7 +415,7 @@ noscript #noscript {
 }
 
 #announcement {
-    font-family: Arial, sans-serif;
+    font-family: "Roboto", "Helvetica Neue";
     font-size: 111%;
     color: white;
     font-weight: bold;
