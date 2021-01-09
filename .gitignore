@@ -18,3 +18,4 @@ sass_processed
 /websocket/config.js
 /<desired bridge log path>
 /package-lock.json
+/templates/analytics.html
