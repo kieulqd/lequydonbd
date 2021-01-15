@@ -227,11 +227,13 @@
             $('a#fill-testcases').click(function () {
                 var inFiles = [], outFiles = [];
                 for (let file of window.valid_files) {
-                    if (isInpFile(file)) {
-                        inFiles.push(file);
-                    }
-                    if (isOutFile(file)) {
-                        outFiles.push(file);
+                    if (file.search('__MACOSX') < 0) {
+                        if (isInpFile(file)) {
+                            inFiles.push(file);
+                        }
+                        if (isOutFile(file)) {
+                            outFiles.push(file);
+                        }
                     }
                 }
                 if (inFiles.length == 0) {
