@@ -37,6 +37,7 @@
 
 .social {
     float: right;
+    margin-right:5px;
 }
 
 // Bootstrap-y buttons
@@ -297,7 +298,7 @@ ul.pagination {
                     padding: 4px 12px;
                     line-height: 1.42857;
                     text-decoration: none;
-                    color: #B3B3B3;
+                    color: #FFF;
                     background-color: $widget_black;
                     border: 1px solid #505050;
                     margin-left: -1px;

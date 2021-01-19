@@ -301,6 +301,10 @@
             {%- endif -%}
         </a>
     {% endif %}
+    <span class="social">
+        {{ post_to_facebook(request, problem, '<i class="fa fa-facebook"></i>') }}
+        {{ post_to_twitter(request, SITE_NAME + ':', problem, '<i class="fa fa-twitter"></i>') }}
+    </span>
 {% endblock %}
 
 {% block comments %}
