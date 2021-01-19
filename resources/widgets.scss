@@ -1,28 +1,41 @@
 @import "vars";
 
-.social i {
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  padding: 5px;
+  font-size: 15px;
+  width: 15px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+/* Twitter */
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  padding: 5px;
+  font-size: 15px;
+  width: 15px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.facebook-this, .tweet-this {
     display: inline;
-    font-size: 1.9em;
-}
-
-.facebook-this, .tweet-this, .gplus-this {
-    display: inline;
-}
-
-.tweet-this i {
-    color: #55ACEE;
-}
-
-.facebook-this i {
-    color: #133783;
-}
-
-.gplus-this i {
-    color: #DD4B38;
 }
 
 .social {
-    font-size: 1.3em;
     float: right;
 }
 
@@ -248,7 +261,7 @@ input {
 // Bootstrap-y pagination
 ul.pagination a:hover {
     color: #FFF;
-    background: rgba(0, 0, 0, 0.55);
+    background: #064d41;
 }
 
 ul.pagination {
@@ -284,7 +297,7 @@ ul.pagination {
                     padding: 4px 12px;
                     line-height: 1.42857;
                     text-decoration: none;
-                    color: #FFF;
+                    color: #B3B3B3;
                     background-color: $widget_black;
                     border: 1px solid #505050;
                     margin-left: -1px;

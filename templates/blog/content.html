@@ -37,7 +37,7 @@
     </div>
     <hr>
     <span class="social">
-        {{ post_to_facebook(request, post, '<i class="fa fa-facebook-official"></i>') }}
+        {{ post_to_facebook(request, post, '<i class="fa fa-facebook"></i>') }}
         {{ post_to_twitter(request, SITE_NAME + ':', post, '<i class="fa fa-twitter"></i>') }}
     </span>
     {% include "comments/list.html" %}
