@@ -112,7 +112,7 @@ body {
     font-size: $base_font_size;
     line-height: 1.231;
     background: $background_light_gray;
-    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    font-family: "Merriweather Sans", "Helvetica Neue", Arial, sans-serif;
     color: #000;
     height: 100%;
 }
@@ -339,6 +339,7 @@ nav {
                 width: 100%;
                 border-radius: 0;
                 height: auto;
+                font-family: 'Merriweather Sans';
             }
 
             &:hover > ul, &:active > ul, &:focus > ul {
@@ -415,7 +416,7 @@ noscript #noscript {
 }
 
 #announcement {
-    font-family: "Roboto", "Helvetica Neue";
+    font-family: "Merriweather Sans", "Helvetica Neue";
     font-size: 111%;
     color: white;
     font-weight: bold;
