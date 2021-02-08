@@ -205,6 +205,7 @@
                 return false;
             });
             
+            //fill Testcase normal format - Code from lqdoj.edu.vn
             function isInpFile(x) {
                 let tail = ['.in', '.inp', '.IN', '.INP', '.In', '.Inp']
                 for (let i of tail) {
@@ -223,16 +224,52 @@
                 }
                 return false;
             }
-
+            
+            //Free Contest Testcase CMS format -- cheat code
+            function isCMSFormat(x) {
+                if (x == 'input.000' || x == 'output.000')
+                    return true;
+                return false;
+            }
+            
+            function isCMSInput(x) {
+                if (x.search('input.') == 0)
+                    return true;
+                return false;
+            }
+            
+            function isCMSOutput(x) {
+                if (x.search('output.') == 0)
+                    return true;
+                return false;
+            }
+            
             $('a#fill-testcases').click(function () {
                 var inFiles = [], outFiles = [];
-                for (let file of window.valid_files) {
-                    if (file.search('__MACOSX') < 0) {
-                        if (isInpFile(file)) {
-                            inFiles.push(file);
+                var files = window.valid_files;
+                files.sort();
+                if (files.length > 1) {
+                    if (isCMSFormat(files[0])) {
+                        for (let file of files) {
+                            if (file.search('__MACOSX') < 0) {
+                                if (isCMSInput(file)) {
+                                    inFiles.push(file);
+                                } else
+                                    if (isCMSOutput(file)) {
+                                        outFiles.push(file);
+                                    }
+                            }
                         }
-                        if (isOutFile(file)) {
-                            outFiles.push(file);
+                    } else {
+                        for (let file of files) {
+                            if (file.search('__MACOSX') < 0) {
+                                if (isInpFile(file)) {
+                                    inFiles.push(file);
+                                } else
+                                    if (isOutFile(file)) {
+                                        outFiles.push(file);
+                                    }
+                            }
                         }
                     }
                 }
@@ -449,6 +486,7 @@
                 </a>
             </td>
         </table>
+        <input type="submit" value="{{ _('Submit!') }}" class="button">
         <div id="column-visible" data-problem="{{ problem.code }}">
             <strong>{{ _('Show columns:') }}</strong>
             <label>
