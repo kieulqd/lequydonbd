@@ -301,7 +301,7 @@
                     for (i = 0; i + 1 < inFiles.length; i++) {
                         $("#id_cases-" + i + "-points").val("0").change();
                     }
-                    $("#id_cases-" + (inFiles.length - 1) + "-points").val("100").change();
+                    $("#id_cases-" + (inFiles.length - 1) + "-points").val(inFiles.length.toString()).change();
                 }
                 else {
                     for (i = 0; i < inFiles.length; i++) {
