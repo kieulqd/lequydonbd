@@ -195,46 +195,46 @@
                 window.scrollBy(0, $tr.height());
                 return false;
             });
-            
+
             //fill Testcase normal format - Code from lqdoj.edu.vn
             function isInpFile(x) {
-                let tail = ['.in', '.inp', '.IN', '.INP', '.In', '.Inp']
+                let tail = ['.in', '.inp']
                 for (let i of tail) {
-                    if (x.endsWith(i)) {
+                    if (x.toLowerCase().endsWith(i)) {
                         return true;
                     }
                 }
                 return false;
             }
             function isOutFile(x) {
-                let tail = ['.out', '.OUT', '.ans', '.ANS', '.Out', '.Ans']
+                let tail = ['.out', '.ans']
                 for (let i of tail) {
-                    if (x.endsWith(i)) {
+                    if (x.toLowerCase().endsWith(i)) {
                         return true;
                     }
                 }
                 return false;
             }
-            
+
             //Free Contest Testcase CMS format -- cheat code
             function isCMSFormat(x) {
                 if (x == 'input.000' || x == 'output.000')
                     return true;
                 return false;
             }
-            
+
             function isCMSInput(x) {
                 if (x.search('input.') == 0)
                     return true;
                 return false;
             }
-            
+
             function isCMSOutput(x) {
                 if (x.search('output.') == 0)
                     return true;
                 return false;
             }
-            
+
             $('a#fill-testcases').click(function () {
                 var inFiles = [], outFiles = [];
                 var files = window.valid_files;
@@ -272,7 +272,7 @@
                     alert("The input files do not match the output files!");
                     return false;
                 }
-                
+
                 inFiles.sort();
                 outFiles.sort();
 
@@ -368,7 +368,7 @@
             }
         });
     }).change();
-    
+
     </script>
 {% endblock %}
 
