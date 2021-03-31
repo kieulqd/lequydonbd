@@ -18,10 +18,14 @@
             font-size: 1.7em;
 
             a {
-                color: #10937f !important;
+                color: #09806d !important;
 
                 &:hover {
-                    color: #0a5c51 !important;
+                    color: #024f45 !important;
+                }
+                
+                &:active {
+                    color: black !important;
                 }
             }
         }
@@ -66,10 +70,14 @@
             font-weight: 500;
 
             a {
-                color: #10937f !important;
+                color: #09806d !important;
 
                 &:hover {
-                    color: #0a5c51 !important;
+                    color: #024f45 !important;
+                }
+                
+                &:active {
+                    color: black !important;
                 }
             }
         }

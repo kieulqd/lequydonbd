@@ -103,11 +103,15 @@
         padding-bottom: 0.15em;
 
         &:link, &:visited {
-            color: #10937f;
+            color: #09806d;
         }
 
         &:hover {
-            color: #0a5c51;
+            color: #024f45;
+        }
+        
+        &:active {
+            color: black;
         }
     }
 
