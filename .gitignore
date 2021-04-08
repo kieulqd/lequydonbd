@@ -16,6 +16,5 @@ sass_processed
 /__pycache__/
 /uwsgi.ini
 /websocket/config.js
-/<desired bridge log path>
 /package-lock.json
 /templates/analytics.html
