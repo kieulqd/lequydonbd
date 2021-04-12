@@ -1,5 +1,11 @@
 #problem-table {
     td {
+      
+        &.problem-id {
+            text-align: left;
+            padding: 0 1em;
+        }
+
         &.category {
             text-align: left;
             padding: 0 1em;
