@@ -483,22 +483,6 @@ ul.select2-selection__rendered {
     padding-bottom: 1.5em !important;
 }
 
-.sidebox-content-blog {
-    border: 1px solid transparent;
-    border-top: none;
-    margin: 0 -5px;
-    padding: 1px 0.5em 3px;
-
-    &.sidebox-table {
-        border: none;
-        padding: 0;
-
-        .table {
-            margin: 0 !important;
-        }
-    }
-}
-
 .ws-closed {
     position: sticky;
     top: 42px;

@@ -37,3 +37,4 @@ webauthn
 bleach
 python-memcached
 django-newsletter
+selenium

@@ -25,12 +25,12 @@
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#09806d">
+    <meta name="msapplication-TileColor" content="#1e1e1e">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     {# Merriweather Sans font import #}
     <link href="//fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" type="text/css">
     {# Chrome 39 for Android colour #}
-    <meta name="theme-color" content="#09806d">
+    <meta name="theme-color" content="#1e1e1e">
     {% if og_image %}
         <meta property="og:image" content="{{ request.build_absolute_uri(og_image) }}">
     {% endif %}
@@ -293,7 +293,7 @@
     <footer>
         <span id="footer-content">
             <br>
-            <a style="color: #808080" href="https://github.com/kieulqd/lequydonbd"> <b>LEQUYDONBD.NET</b> Source Code</a> |
+            <a style="color: #808080" href="https://dmoj.ca">proudly powered by <b>DMOJ</b></a> |
             {% if i18n_config.footer %}
                 {{ i18n_config.footer|safe }} |
             {% endif %}
