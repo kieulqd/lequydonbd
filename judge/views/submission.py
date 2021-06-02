@@ -387,7 +387,7 @@ class ProblemSubmissionsBase(SubmissionsListBase):
         return _('All submissions for %s') % self.problem_name
 
     def get_content_title(self):
-        return format_html('All submissions for <a href="{1}">{0}</a>', self.problem_name,
+        return format_html(_('All submissions for <a href="{1}">{0}</a>'), self.problem_name,
                            reverse('problem_detail', args=[self.problem.code]))
 
     def access_check_contest(self, request):

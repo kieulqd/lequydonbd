@@ -2523,7 +2523,7 @@ msgstr "Truy cập vào cuộc thi \"%s\" từ chối"
 
 #: judge/views/contests.py:235
 msgid "Clone Contest"
-msgstr ""
+msgstr "Nhân bản kỳ thi"
 
 #: judge/views/contests.py:301
 msgid "Contest not ongoing"
@@ -2951,7 +2951,12 @@ msgstr "Tất cả các bài nộp bởi %s"
 #: judge/views/submission.py:381
 #, python-format
 msgid "All submissions for %s"
-msgstr "Tất cả các bài nộp bởi %s"
+msgstr "Tất cả các bài nộp cho %s"
+
+#: judge/views/submission.py:390
+msgid "All submissions for <a href=\"{1}\">{0}</a>"
+msgstr "Tất cả các bài nộp cho <a href=\"{1}\">{0}</a>"
+
 
 #: judge/views/submission.py:400
 msgid "Must pass a problem"
@@ -3593,7 +3598,7 @@ msgstr "Sự kiện sắp tới"
 
 #: templates/contest/list.html:254
 msgid "There are no scheduled contests at this time."
-msgstr "Không có không có cuộc thi dự kiến tại thời điểm này."
+msgstr "Không có cuộc thi dự kiến tại thời điểm này."
 
 #: templates/contest/list.html:260
 msgid "Past Contests"
@@ -3682,7 +3687,7 @@ msgstr "Hiển thị các tổ chức"
 
 #: templates/contest/stats.html:38
 msgid "Problem Status Distribution"
-msgstr ""
+msgstr "Tỉ lệ trạng thái"
 
 #: templates/contest/stats.html:43
 msgid "Problem AC Rate"
@@ -3893,7 +3898,7 @@ msgstr ""
 
 #: templates/problem/clone.html:37
 msgid "Enter a new code for the cloned problem:"
-msgstr ""
+msgstr "Nhập mã mới cho bài tập đã nhân bản"
 
 #: templates/problem/data.html:344
 msgid "View YAML"
@@ -4186,7 +4191,7 @@ msgstr "Kiểu bài tập"
 
 #: templates/problem/search-form.html:57
 msgid "Point range"
-msgstr ""
+msgstr "Phạm vi điểm"
 
 #: templates/problem/search-form.html:63 templates/submission/list.html:329
 #: templates/ticket/list.html:248
@@ -4609,7 +4614,7 @@ msgstr "Tài nguyên:"
 
 #: templates/submission/status-testcases.html:138
 msgid "Maximum runtime on single test case:"
-msgstr ""
+msgstr "Thời gian chạy tối đa:"
 
 #: templates/submission/status-testcases.html:143
 msgid "Final pretest score:"
