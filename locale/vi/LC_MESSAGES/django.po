@@ -4170,7 +4170,7 @@ msgstr "Tìm đề bài..."
 
 #: templates/problem/search-form.html:14
 msgid "Full text search"
-msgstr "Tìm kiếm"
+msgstr "Tìm cả trong nội dung bài"
 
 #: templates/problem/search-form.html:21
 msgid "Hide solved problems"
