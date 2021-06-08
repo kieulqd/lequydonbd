@@ -39,3 +39,6 @@ python-memcached
 django-newsletter
 selenium
 redis
+uwsgi
+websocket-client
+django-admin-sortable2
