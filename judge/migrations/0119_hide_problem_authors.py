@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('judge', '0118_convert_to_dates'),
+        ('judge', '0119_merge_20210509_0716'),
     ]
 
     operations = [
