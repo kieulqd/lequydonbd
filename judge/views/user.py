@@ -509,9 +509,9 @@ class UserLogoutView(TitleMixin, TemplateView):
 
 class CustomPasswordResetView(PasswordResetView):
     def post(self, request, *args, **kwargs):
-        key = f'pwreset!{request.META["REMOTE_ADDR"]}'
-        cache.add(key, 0, timeout=settings.DMOJ_PASSWORD_RESET_LIMIT_WINDOW)
-        if cache.incr(key) > settings.DMOJ_PASSWORD_RESET_LIMIT_COUNT:
-            return HttpResponse('You sent in too many password reset requests. Please try again later.',
-                                content_type='text/plain', status=429)
+        #key = f'pwreset!{request.META["REMOTE_ADDR"]}'
+        #cache.add(key, 0, timeout=settings.DMOJ_PASSWORD_RESET_LIMIT_WINDOW)
+        #if cache.incr(key) > settings.DMOJ_PASSWORD_RESET_LIMIT_COUNT:
+         #   return HttpResponse('You sent in too many password reset requests. Please try again later.',
+          #                      content_type='text/plain', status=429)
         return super().post(request, *args, **kwargs)
