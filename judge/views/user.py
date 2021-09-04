@@ -28,7 +28,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, FormView, ListView, TemplateView, View
 from reversion import revisions
 
-from judge.forms import CustomAuthenticationForm, DownloadDataForm, ProfileForm, newsletter_id
+from judge.forms import CustomAuthenticationForm, DownloadDataForm, ProfileForm, newsletter_id, UserForm
 from judge.models import Profile, Rating, Submission
 from judge.performance_points import get_pp_breakdown
 from judge.ratings import rating_class, rating_progress
@@ -359,9 +359,12 @@ def edit_profile(request):
         raise Http404()
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=request.profile, user=request.user)
-        if form.is_valid():
+        form_user = UserForm(request.POST, instance=request.user)
+
+        if form.is_valid() and form_user.is_valid():
             with revisions.create_revision(atomic=True):
                 form.save()
+                form_user.save()
                 revisions.set_user(request.user)
                 revisions.set_comment(_('Updated on site'))
 
@@ -384,6 +387,7 @@ def edit_profile(request):
             return HttpResponseRedirect(request.path)
     else:
         form = ProfileForm(instance=request.profile, user=request.user)
+        form_user = UserForm(instance=request.user)
         if newsletter_id is not None:
             try:
                 subscription = Subscription.objects.get(user=request.user, newsletter_id=newsletter_id)
@@ -402,6 +406,7 @@ def edit_profile(request):
         'ignore_user_script': True,
         'TIMEZONE_MAP': tzmap or 'http://momentjs.com/static/img/world.png',
         'TIMEZONE_BG': settings.TIMEZONE_BG if tzmap else '#4E7CAD',
+        'form_user': form_user,
     })
 
 

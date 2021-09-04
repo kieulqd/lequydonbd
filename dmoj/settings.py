@@ -163,7 +163,7 @@ else:
 
     WPADMIN = {
         'admin': {
-            'title': 'DMOJ Admin',
+            'title': 'LEQUYDONBD.NET Admin',
             'menu': {
                 'top': 'wpadmin.menu.menus.BasicTopMenu',
                 'left': 'wpadmin.menu.custom.CustomModelLeftMenuWithDashboard',

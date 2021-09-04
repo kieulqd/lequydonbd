@@ -51,6 +51,8 @@ class CustomRegistrationForm(RegistrationForm):
                                                     'Please use a reputable email provider.'))
         return self.cleaned_data['email']
 
+    full_name = forms.CharField(max_length=100, label=_('Full name'), required=False)
+
 
 class RegistrationView(OldRegistrationView):
     title = _('Registration')
@@ -74,6 +76,8 @@ class RegistrationView(OldRegistrationView):
         })
 
         cleaned_data = form.cleaned_data
+        user.first_name = cleaned_data['full_name']
+        user.save()
         profile.timezone = cleaned_data['timezone']
         profile.language = cleaned_data['language']
         profile.organizations.add(*cleaned_data['organizations'])

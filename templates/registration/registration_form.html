@@ -75,6 +75,10 @@
             font-size: 0.7em;
             padding-left: 0.6em;
         }
+        
+        required {
+            color: red;
+        }
 
         #edit-form {
             border: unset;
@@ -134,19 +138,25 @@
         <form id="edit-form" action="" method="post" class="form-area">
             {% csrf_token %}
 
-            <div class="block-header">{{ _('Username') }}</div>
+            <div class="block-header">{{ _('Username') }}<required>*</required></div>
             <span class="fullwidth{% if form.username.errors %}-error{% endif %}">{{ form.username }}</span>
             {% if form.username.errors %}
                 <div class="form-field-error">{{ form.username.errors }}</div>
             {% endif %}
 
-            <div class="block-header">{{ _('Email') }}</div>
+            <div class="block-header">{{ _('Full Name') }}</div>
+            <span class="fullwidth{% if form.full_name.errors %}-error{% endif %}">{{ form.full_name }}</span>
+            {% if form.full_name.errors %}
+                <div class="form-field-error">{{ form.full_name.errors }}</div>
+            {% endif %}
+
+            <div class="block-header">{{ _('Email') }}<required>*</required></div>
             <span class="fullwidth{% if form.email.errors %}-error{% endif %}">{{ form.email }}</span>
             {% if form.email.errors %}
                 <div class="form-field-error">{{ form.email.errors }}</div>
             {% endif %}
 
-            <div class="block-header">{{ _('Password') -}}
+            <div class="block-header">{{ _('Password') -}}<required>*</required>
                 <small>(<a href="#" class="pass-req-link">?</a>)</small>
             </div>
             <div style="display: none" class="pass-req alert alert-info">
@@ -160,7 +170,7 @@
             {% if form.password1.errors %}
                 <div class="form-field-error">{{ form.password1.errors }}</div>
             {% endif %}
-            <div class="block-header">{{ _('Password') }}<sup style="font-size: 0.7em;padding-left: 0.2em;">2</sup>{# -#}
+            <div class="block-header">{{ _('Password') }}<required>*</required><sup style="font-size: 0.7em;padding-left: 0.2em;">2</sup>{# -#}
                 <small>{{ _('(again, for confirmation)') }}</small>
             </div>
             <span class="fullwidth{% if form.password2.errors %}-error{% endif %}">{{ form.password2 }}</span>
@@ -168,7 +178,7 @@
                 <div class="form-field-error">{{ form.password2.errors }}</div>
             {% endif %}
 
-            <div class="block-header">{{ _('Timezone') }}<small>{{ _('(select your closest major city)') }}</small></div>
+            <div class="block-header">{{ _('Timezone') }}<required>*</required><small>{{ _('(select your closest major city)') }}</small></div>
             <div class="fullwidth">
                 <div>{{ form.timezone }}
                     <div style="float: right">
@@ -178,7 +188,7 @@
                 </div>
             </div>
 
-            <div class="block-header">{{ _('Default language') }}</div>
+            <div class="block-header">{{ _('Default language') }}<required>*</required></div>
             <span class="fullwidth">{{ form.language }}</span>
 
             <div class="block-header">{{ _('Affiliated organizations') }}</div>

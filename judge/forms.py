@@ -6,6 +6,7 @@ import webauthn
 from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db.models import Q
@@ -40,6 +41,11 @@ two_factor_validators_by_length = {
 def fix_unicode(string, unsafe=tuple('\u202a\u202b\u202d\u202e')):
     return string + (sum(k in unsafe for k in string) - string.count('\u202c')) * '\u202c'
 
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name']
 
 class ProfileForm(ModelForm):
     if newsletter_id is not None:

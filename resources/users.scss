@@ -11,6 +11,14 @@ td.user-name {
     text-align: left;
 }
 
+td.full-name {
+    padding-left: 2em;
+    text-align: left;
+    color: #808080;
+    font-weight: bold;
+    font-style: italic;
+}
+
 tr {
     padding-bottom: 96px;
 
@@ -38,14 +46,14 @@ th.header.rank {
 
 #users-table {
     .username {
-        width: 100%;
+        width: 60%;
     }
 
     .header {
         vertical-align: middle;
     }
 
-    .rank, .points, .problems, .username {
+    .rank, .points, .problems, .username, .fullname {
         white-space: nowrap;
     }
 
@@ -59,6 +67,9 @@ th.header.rank {
         &.highlight {
             background: #fff897;
         }
+    }
+    .fullname {
+        width: 40%;
     }
 }
 
