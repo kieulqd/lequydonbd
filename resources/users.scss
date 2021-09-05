@@ -63,19 +63,16 @@ th.header.rank {
 
 }
 
-
 #users-table .fullname-column {
-    text-align: right !important;
-    border-right: none !important;
-    padding-left: 1em;
+    min-width: 6em;
+    text-align: right!important;
+    border-right: none!important;
 }
 
 #users-table .fullname-column span {
     color: gray !important;
     font-weight: bold;
     font-style: italic;
-    max-width:40%;
-    white-space:nowrap;
 }
 
 #search-form {
