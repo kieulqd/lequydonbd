@@ -11,14 +11,6 @@ td.user-name {
     text-align: left;
 }
 
-td.full-name {
-    padding-left: 2em;
-    text-align: left;
-    color: #808080;
-    font-weight: bold;
-    font-style: italic;
-}
-
 tr {
     padding-bottom: 96px;
 
@@ -46,14 +38,14 @@ th.header.rank {
 
 #users-table {
     .username {
-        width: 60%;
+        width: 100%;
     }
 
     .header {
         vertical-align: middle;
     }
 
-    .rank, .points, .problems, .username, .fullname {
+    .rank, .points, .problems, .username {
         white-space: nowrap;
     }
 
@@ -68,9 +60,22 @@ th.header.rank {
             background: #fff897;
         }
     }
-    .fullname {
-        width: 40%;
-    }
+
+}
+
+
+#users-table .fullname-column {
+    text-align: right !important;
+    border-right: none !important;
+    padding-left: 1em;
+}
+
+#users-table .fullname-column span {
+    color: gray !important;
+    font-weight: bold;
+    font-style: italic;
+    max-width:40%;
+    white-space:nowrap;
 }
 
 #search-form {

@@ -51,7 +51,7 @@ class CustomRegistrationForm(RegistrationForm):
                                                     'Please use a reputable email provider.'))
         return self.cleaned_data['email']
 
-    full_name = forms.CharField(max_length=100, label=_('Full name'), required=False)
+    full_name = forms.CharField(max_length=30, label=_('Full name'), required=False)
 
 
 class RegistrationView(OldRegistrationView):
