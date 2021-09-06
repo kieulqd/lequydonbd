@@ -42,3 +42,4 @@ redis
 uwsgi
 websocket-client
 django-admin-sortable2
+django-recaptcha2
