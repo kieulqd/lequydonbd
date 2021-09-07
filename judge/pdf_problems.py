@@ -109,7 +109,7 @@ page.paperSize = {
     footer: {
         height: '1cm',
         contents: phantom.callback(function(num, pages) {
-            return ('<center style="margin: 0 auto; font-family: Segoe UI; font-size: 10px">'
+            return ('<center style="margin: 0 auto; font-family: Source Sans Pro; font-size: 10px">'
                   + param.footer.replace('[page]', num).replace('[topage]', pages) + '</center>');
         })
     }
@@ -166,9 +166,9 @@ try {
 
     var {Cc, Ci} = require('chrome');
     var prefs = Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefService);
-    // Changing the serif font so that printed footers show up as Segoe UI.
+    // Changing the serif font so that printed footers show up as Source Sans Pro.
     var branch = prefs.getBranch('font.name.serif.');
-    branch.setCharPref('x-western', 'Segoe UI');
+    branch.setCharPref('x-western', 'Source Sans Pro');
 
     var page = require('webpage').create();
 
@@ -238,7 +238,7 @@ puppeteer.launch().then(browser => Promise.resolve()
             printBackground: true,
             displayHeaderFooter: true,
             headerTemplate: '<div></div>',
-            footerTemplate: '<center style="margin: 0 auto; font-family: Segoe UI; font-size: 10px">' +
+            footerTemplate: '<center style="margin: 0 auto; font-family: Source Sans Pro; font-size: 10px">' +
                 param.footer.replace('[page]', '<span class="pageNumber"></span>')
                             .replace('[topage]', '<span class="totalPages"></span>')
                 + '</center>',
@@ -278,7 +278,7 @@ class SeleniumPDFRender(BasePdfMaker):
         'printBackground': True,
         'displayHeaderFooter': True,
         'headerTemplate': '<div></div>',
-        'footerTemplate': '<center style="margin: 0 auto; font-family: Segoe UI; font-size: 10px">' +
+        'footerTemplate': '<center style="margin: 0 auto; font-family: Source Sans Pro; font-size: 10px">' +
                           gettext('Page %s of %s') %
                           ('<span class="pageNumber"></span>', '<span class="totalPages"></span>') +
                           '</center>',
