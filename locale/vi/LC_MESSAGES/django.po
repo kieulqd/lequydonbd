@@ -5327,3 +5327,12 @@ msgstr "Hồ sơ Admin"
 msgid "Check all"
 msgstr "Chọn tất cả"
 
+#: templates/contest/ranking.html:272
+msgid "Show full name"
+msgstr "Hiển thị Họ và tên"
+
+#: templates/contest/ranking-table.html:8
+msgid "Full name"
+msgstr "Họ và tên"
+
+
