@@ -5,6 +5,8 @@
         <th class="rating-column">{{ _('Rating') }}</th>
     {% endif %}
     <th class="organization-column">{{ _('Organization') }}</th>
+    <th class="fullname-column">{{ _('Full Name') }}</th>
+
 {% endblock %}
 
 {% block after_rank %}
@@ -16,6 +18,13 @@
             <span class="organization"><a href="{{ user.organization.get_absolute_url() }}">
                 {{- user.organization.short_name -}}
             </a></span>
+        {% endif %}
+    </td>
+    <td class="fullname-column"> 
+        {% if user.user.first_name %}
+            <span>
+                {{ user.user.first_name }}
+            </span>
         {% endif %}
     </td>
 {% endblock %}
