@@ -218,8 +218,13 @@ header {
 }
 
 #nav-shadow {
-    height: 3px;
+    height: 2px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), transparent);
+}
+
+#nav-line {
+    height: 4px;
+    background: $highlight_blue;
 }
 
 #nav-container {
@@ -323,7 +328,7 @@ nav {
 
                     a, button {
                         padding: 8px 20px 8px 8px !important;
-                        font-size: 0.8em;
+                        font-size: 0.9em;
                         line-height: 18px;
                         display: block;
                         border-left: 4px solid $highlight_blue;
