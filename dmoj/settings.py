@@ -221,9 +221,20 @@ else:
                         'redirects.Redirect',
                     ],
                 },
+                {
+                    'model': 'newsletter.Newsletter',
+                    'icon': 'fa-newspaper-o',
+                    'children': [
+                        'newsletter.Message',
+                        'newsletter.Newsletter',
+                        'newsletter.Submission',
+                        'newsletter.Subscription',
+                    ],
+                },
                 ('judge.BlogPost', 'fa-rss-square'),
                 ('judge.Comment', 'fa-comment-o'),
                 ('flatpages.FlatPage', 'fa-file-text-o'),
+                ('judge.Ticket', 'fa-exclamation-circle'),
                 ('judge.Solution', 'fa-pencil'),
             ],
             'dashboard': {

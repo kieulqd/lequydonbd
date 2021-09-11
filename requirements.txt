@@ -36,7 +36,7 @@ netaddr
 webauthn
 bleach
 python-memcached
-django-newsletter
+django-newsletter @ git+git://github.com/DMOJ/django-newsletter.git
 selenium
 redis
 uwsgi
