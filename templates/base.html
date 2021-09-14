@@ -254,17 +254,15 @@
             
               {% if LANGUAGE_CODE == 'vi' %}
                 <a id="flag_language" href="#" onclick="submmit_language('en')">
-                    <img src="{{ static('icons/gb_flag.svg') }}" alt="EN" height="30">
+                    <img src="{{ static('icons/gb_flag.svg') }}" alt="EN" height="24">
                 </a>
             {% else %}
                 <a id="flag_language" href="#" onclick="submmit_language('vi')">
-                    <img src="{{ static('icons/vi_flag.svg') }}" alt="VI" height="30">
+                    <img src="{{ static('icons/vi_flag.svg') }}" alt="VI" height="24">
                 </a>
             {% endif %}
         </span>
     </div>
-    <div id="nav-line"></div>
-    <div id="nav-shadow"></div>
 </nav>
 {% if request.in_contest %}
     <div id="contest-info">
