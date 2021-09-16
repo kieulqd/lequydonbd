@@ -96,14 +96,6 @@ div.info-float {
     padding: 10px;
 }
 
-footer {
-    color: gray;
-    display: block;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-}
-
 body {
     position: relative;
     min-height: 100%;
@@ -237,8 +229,9 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    background-color: $widget_black;
     border-bottom: 5px solid $highlight_blue;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 5px black;
 }
 
 nav {
@@ -388,11 +381,22 @@ hr {
     }
 }
 
-footer {
-    text-align: center;
-    height: 40px;
-    border-top: 1px solid $border_gray;
+#footer-page {
+    text-align: center ;
+    height: 30px;
+    border-top: 1px solid #ccc;
     background: #ededed;
+    width:100%;
+    position: absolute;
+    display: block;
+    padding-top: 10px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+#footer-content {
+    
 }
 
 html {
@@ -544,7 +548,6 @@ noscript #noscript {
     padding-bottom: 4em;
 }
 
-// Offset the footer
 
 .title-line-action {
     float: right;
