@@ -664,11 +664,11 @@ msgstr "Mã kỳ thi đã tồn tại."
 #: judge/jinja2/datetime.py:26 templates/blog/content.html:27
 #: templates/blog/dashboard.html:21
 msgid "N j, Y, g:i a"
-msgstr "j, M, Y, G:i"
+msgstr "j M, Y, G:i"
 
 #: templates/blog/content.html:34
 msgid "N j, Y, G:i"
-msgstr "j, M, Y, G:i"
+msgstr "j M, Y, G:i"
 
 #: judge/jinja2/datetime.py:26
 #, python-brace-format
