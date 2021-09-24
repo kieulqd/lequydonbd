@@ -3650,6 +3650,38 @@ msgstr "Đang tham gia ảo."
 msgid "Contest is over."
 msgstr "Cuộc thi kết thúc."
 
+#: templates/contest/contest.html:41
+msgid "Starting in %(countdown)s."
+msgstr "Bắt đầu sau %(countdown)s."
+
+#: templates/contest/contest.html:42
+msgid "Ends in %(countdown)s."
+msgstr "Kết thúc sau %(countdown)s."
+
+#: templates/contest/contest.html:45
+msgid "Ends in %(countdown)s"
+msgstr "Kết thúc sau %(countdown)s"
+
+#: templates/contest/contest.html:43
+msgid "Contest ends in %(countdown)s."
+msgstr "Cuộc thi kết thúc sau %(countdown)s."
+
+#: templates/contest/contest.html:44
+msgid "You have %(countdown)s remaining."
+msgstr "Bạn còn %(countdown)s."
+
+#: templates/organization/home.html:152
+msgid "Your time is up! Contest ends in %(countdown)s."
+msgstr "Thời gian của bạn đã hết! Cuộc thi kết thúc sau %(countdown)s."
+
+#: templates/organization/home.html:152
+msgid "%(duration)s long"
+msgstr "Thời gian: %(duration)s"
+
+#: templates/organization/home.html:151
+msgid "%(time_limit)s window"
+msgstr "Thời gian: %(time_limit)s (bắt đầu tính giờ khi nhấn tham gia cuộc thi)"
+
 #: templates/contest/contest.html:59 templates/contest/contest.html:63
 msgid "F j, Y, G:i T"
 msgstr "j F, Y, G:i T"
@@ -3892,6 +3924,11 @@ msgstr "Tổ chức"
 #, python-brace-format
 msgid "Started on {time}"
 msgstr "Bắt đầu vào lúc {time}"
+
+#: templates/contest/ranking-table.html:27
+#, python-brace-format
+msgid "Started {time}"
+msgstr "Bắt đầu {time}"
 
 #: templates/contest/ranking-table.html:30
 msgid "Participation ended."
@@ -5339,18 +5376,6 @@ msgstr "Hiển thị Họ và tên"
 msgid "Full name"
 msgstr "Họ và tên"
 
-#: templates/contest/contest.html:41
-msgid "Starting in %(countdown)s."
-msgstr "Bắt đầu sau %(countdown)s."
-
-#: templates/organization/home.html:152
-msgid "%(duration)s long"
-msgstr "Thời gian: %(duration)s"
-
-#: templates/organization/home.html:151
-msgid "%(time_limit)s window"
-msgstr "Thời gian: %(time_limit)s (bắt đầu tính giờ khi nhấn tham gia cuộc thi)"
-
 msgid "posted {time}"
 msgstr "đã đăng {time}"
 
@@ -5360,5 +5385,5 @@ msgstr "đã bình luận {time}"
 #: templates/blog/content.html:34
 #, python-format
 msgid "posted on %(time)s"
-msgstr "đã đăng lúc %(time)s"
+msgstr "đã đăng vào %(time)s"
 
