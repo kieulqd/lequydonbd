@@ -33,7 +33,7 @@ sqlparse
 lupa
 martor @ git+git://github.com/DMOJ/martor.git
 netaddr
-webauthn
+webauthn<1
 bleach
 python-memcached
 django-newsletter @ git+git://github.com/DMOJ/django-newsletter.git
@@ -43,3 +43,4 @@ uwsgi
 websocket-client
 django-admin-sortable2
 django-recaptcha2
+icalendar
