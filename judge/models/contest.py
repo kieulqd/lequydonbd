@@ -57,10 +57,12 @@ class Contest(models.Model):
     SCOREBOARD_VISIBLE = 'V'
     SCOREBOARD_AFTER_CONTEST = 'C'
     SCOREBOARD_AFTER_PARTICIPATION = 'P'
+    SCOREBOARD_HIDDEN = 'H'
     SCOREBOARD_VISIBILITY = (
         (SCOREBOARD_VISIBLE, _('Visible')),
         (SCOREBOARD_AFTER_CONTEST, _('Hidden for duration of contest')),
         (SCOREBOARD_AFTER_PARTICIPATION, _('Hidden for duration of participation')),
+        (SCOREBOARD_HIDDEN, _('Hidden permanently')),
     )
     key = models.CharField(max_length=20, verbose_name=_('contest id'), unique=True,
                            validators=[RegexValidator('^[a-z0-9]+$', _('Contest id must be ^[a-z0-9]+$'))])
@@ -201,7 +203,7 @@ class Contest(models.Model):
             return True
         if not self.can_join:
             return False
-        if not self.show_scoreboard and not self.is_in_contest(user):
+        if not self.show_scoreboard and not self.is_in_contest(user) and not self.has_completed_contest(user):
             return False
         return True
 
@@ -234,7 +236,7 @@ class Contest(models.Model):
         if (self.scoreboard_visibility in (self.SCOREBOARD_AFTER_CONTEST, self.SCOREBOARD_AFTER_PARTICIPATION) and
                 not self.ended):
             return False
-        return True
+        return self.scoreboard_visibility != self.SCOREBOARD_HIDDEN
 
     @property
     def contest_window_length(self):
