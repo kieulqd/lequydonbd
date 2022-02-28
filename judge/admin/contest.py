@@ -99,22 +99,27 @@ class ContestForm(ModelForm):
             'authors': AdminHeavySelect2MultipleWidget(data_view='profile_select2'),
             'curators': AdminHeavySelect2MultipleWidget(data_view='profile_select2'),
             'testers': AdminHeavySelect2MultipleWidget(data_view='profile_select2'),
+            'spectators': AdminHeavySelect2MultipleWidget(data_view='profile_select2'),
             'private_contestants': AdminHeavySelect2MultipleWidget(data_view='profile_select2',
                                                                    attrs={'style': 'width: 100%'}),
             'organizations': AdminHeavySelect2MultipleWidget(data_view='organization_select2'),
             'classes': AdminHeavySelect2MultipleWidget(data_view='class_select2'),
+            'join_organizations': AdminHeavySelect2MultipleWidget(data_view='organization_select2'),
             'tags': AdminSelect2MultipleWidget,
             'banned_users': AdminHeavySelect2MultipleWidget(data_view='profile_select2',
                                                             attrs={'style': 'width: 100%'}),
             'view_contest_scoreboard': AdminHeavySelect2MultipleWidget(data_view='profile_select2',
                                                                        attrs={'style': 'width: 100%'}),
+            'view_contest_submissions': AdminHeavySelect2MultipleWidget(data_view='profile_select2',
+                                                                        attrs={'style': 'width: 100%'}),
             'description': AdminMartorWidget(attrs={'data-markdownfy-url': reverse_lazy('contest_preview')}),
         }
 
 
 class ContestAdmin(NoBatchDeleteMixin, VersionAdmin):
     fieldsets = (
-        (None, {'fields': ('key', 'name', 'authors', 'curators', 'testers')}),
+        (None, {'fields': ('key', 'name', 'authors', 'curators', 'testers', 'tester_see_submissions',
+                           'tester_see_scoreboard', 'spectators')}),
         (_('Settings'), {'fields': ('is_visible', 'use_clarifications', 'hide_problem_tags', 'hide_problem_authors',
                                     'show_short_display', 'run_pretests_only', 'locked_after', 'scoreboard_visibility',
                                     'points_precision')}),
@@ -123,7 +128,7 @@ class ContestAdmin(NoBatchDeleteMixin, VersionAdmin):
         (_('Format'), {'fields': ('format_name', 'format_config', 'problem_label_script')}),
         (_('Rating'), {'fields': ('is_rated', 'rate_all', 'rating_floor', 'rating_ceiling', 'rate_exclude')}),
         (_('Access'), {'fields': ('access_code', 'private_contestants', 'organizations', 'classes',
-                                  'view_contest_scoreboard')}),
+                                  'join_organizations', 'view_contest_scoreboard', 'view_contest_submissions')}),
         (_('Justice'), {'fields': ('banned_users',)}),
     )
     list_display = ('key', 'name', 'is_visible', 'is_rated', 'locked_after', 'start_time', 'end_time', 'time_limit',
@@ -175,19 +180,22 @@ class ContestAdmin(NoBatchDeleteMixin, VersionAdmin):
         return readonly
 
     def save_model(self, request, obj, form, change):
-        # `is_visible` will not appear in `cleaned_data` if user cannot edit it
-        if form.cleaned_data.get('is_visible') and not request.user.has_perm('judge.change_contest_visibility'):
-            if not form.cleaned_data['is_private'] and not form.cleaned_data['is_organization_private']:
-                raise PermissionDenied
-            if not request.user.has_perm('judge.create_private_contest'):
-                raise PermissionDenied
-
         # `private_contestants` and `organizations` will not appear in `cleaned_data` if user cannot edit it
         if form.changed_data:
             if 'private_contestants' in form.changed_data:
                 obj.is_private = bool(form.cleaned_data['private_contestants'])
             if 'organizations' in form.changed_data:
                 obj.is_organization_private = bool(form.cleaned_data['organizations'])
+            if 'join_organizations' in form.cleaned_data:
+                obj.limit_join_organizations = bool(form.cleaned_data['join_organizations'])
+
+        # `is_visible` will not appear in `cleaned_data` if user cannot edit it
+        if form.cleaned_data.get('is_visible') and not request.user.has_perm('judge.change_contest_visibility'):
+            if not obj.is_private and not obj.is_organization_private:
+                raise PermissionDenied
+            if not request.user.has_perm('judge.create_private_contest'):
+                raise PermissionDenied
+
         super().save_model(request, obj, form, change)
         # We need this flag because `save_related` deals with the inlines, but does not know if we have already rescored
         self._rescored = False
@@ -268,7 +276,7 @@ class ContestAdmin(NoBatchDeleteMixin, VersionAdmin):
     def rejudge_view(self, request, contest_id, problem_id):
         queryset = ContestSubmission.objects.filter(problem_id=problem_id).select_related('submission')
         for model in queryset:
-            model.submission.judge(rejudge=True)
+            model.submission.judge(rejudge=True, rejudge_user=request.user)
 
         self.message_user(request, ngettext('%d submission was successfully scheduled for rejudging.',
                                             '%d submissions were successfully scheduled for rejudging.',
