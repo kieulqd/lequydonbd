@@ -219,11 +219,7 @@
                         <a href="{{ url('user_page') }}">
                             <span>
                                 <img src="{{ gravatar(request.user, 32) }}" height="24" width="24">{# -#}
-                                <span>
-                                    {%- trans username=request.profile.display_name -%}
-                                        Hello, <b>{{ username }}</b>.
-                                    {%- endtrans %}
-                                </span>
+                                <span>{{ _('Hello, %(username)s.', username=('<b>%s</b>'|safe|format(request.profile.display_name))) }}</span>
                             </span>
                         </a>
                         <ul style="width: 150px">
@@ -232,7 +228,7 @@
                             {% endif %}
                             <li><a href="{{ url('user_edit_profile') }}">{{ _('Edit profile') }}</a></li>
                             {% if request.user.is_impersonate %}
-                                <li><a href="{{ url('impersonate-stop') }}">Stop impersonating</a></li>
+                                <li><a href="{{ url('impersonate-stop') }}">{{ _('Stop impersonating') }}</a></li>
                             {% else %}
                                 <li>
                                     <form action="{{ url('auth_logout') }}" method="POST">
@@ -308,7 +304,7 @@
 
     <footer id="footer-page">
         <span id="footer-content">
-            <a style="color: #808080" href="https://dmoj.ca">proudly powered by <b>DMOJ</b> | </a> <a style="color: #09806d" href="https://github.com/kieulqd/lequydonbd"> <b>LEQUYDONBD.NET</b> Source Code</a>
+            <a style="color: #808080" href="https://dmoj.ca">{{ _('proudly powered by **DMOJ**')|markdown('default', strip_paragraphs=True) }}</a> | <a style="color: #09806d" href="https://github.com/kieulqd/site"> <b>LEQUYDONBD.NET</b> Source Code</a>
             {% if i18n_config.footer %}
                 {{ i18n_config.footer|safe }} |
             {% endif %}
