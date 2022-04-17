@@ -34,13 +34,13 @@ lupa
 martor @ git+https://github.com/DMOJ/martor.git
 netaddr
 webauthn<1
-bleach
+bleach<5
 python-memcached
 django-newsletter @ git+git://github.com/DMOJ/django-newsletter.git
 selenium
 redis
 uwsgi
 websocket-client
-django-admin-sortable2
+django-admin-sortable2<2
 django-recaptcha2
 icalendar
