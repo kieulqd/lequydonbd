@@ -165,7 +165,7 @@ else:
 
     WPADMIN = {
         'admin': {
-            'title': 'LEQUYDONBD.NET Admin',
+            'title': 'oj.lequydon.net admin',
             'menu': {
                 'top': 'wpadmin.menu.menus.BasicTopMenu',
                 'left': 'wpadmin.menu.custom.CustomModelLeftMenuWithDashboard',
