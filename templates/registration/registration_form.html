@@ -126,6 +126,12 @@
                 $('.pass-req').toggle('fast');
                 return false;
             });
+            try {
+                var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                if (typeof tz === 'string' && $('#id_timezone option[value="' + tz + '"]').length) {
+                    $('#id_timezone').val(tz).change();
+                }
+            } catch (e) {}
         });
     </script>
     {% if form.captcha %}
@@ -211,8 +217,7 @@
             <hr>
             {% if tos_url %}
                 <span class="tos-section">
-                    {{ _('By registering, you agree to our') }}
-                    <a href="{{ tos_url }}">{{ _('Terms & Conditions') }}</a>.
+                    {{ (_('By registering, you agree to our [Terms & Conditions][0].') + '\n\n  [0]: ' + tos_url)|markdown('default', strip_paragraphs=True) }}
                 </span>
             {% endif %}
             <button style="float:right;" type="submit">{{ _('Register!') }}</button>

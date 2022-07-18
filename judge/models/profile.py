@@ -55,7 +55,7 @@ class Organization(models.Model):
                                             'only applicable to private organizations'))
     access_code = models.CharField(max_length=7, help_text=_('Student access code'),
                                    verbose_name=_('access code'), null=True, blank=True)
-    logo_override_image = models.CharField(verbose_name=_('Logo override image'), default='', max_length=150,
+    logo_override_image = models.CharField(verbose_name=_('logo override image'), default='', max_length=150,
                                            blank=True,
                                            help_text=_('This image will replace the default site logo for users '
                                                        'viewing the organization.'))
@@ -147,7 +147,7 @@ class Class(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, verbose_name=_('user associated'), on_delete=models.CASCADE)
     about = models.TextField(verbose_name=_('self-description'), null=True, blank=True)
-    timezone = models.CharField(max_length=50, verbose_name=_('location'), choices=TIMEZONE,
+    timezone = models.CharField(max_length=50, verbose_name=_('time zone'), choices=TIMEZONE,
                                 default=settings.DEFAULT_USER_TIME_ZONE)
     language = models.ForeignKey('Language', verbose_name=_('preferred language'), on_delete=models.SET_DEFAULT,
                                  default=Language.get_default_language_pk)
@@ -358,9 +358,9 @@ class OrganizationRequest(models.Model):
                                      on_delete=models.CASCADE)
     time = models.DateTimeField(verbose_name=_('request time'), auto_now_add=True)
     state = models.CharField(max_length=1, verbose_name=_('state'), choices=(
-        ('P', 'Pending'),
-        ('A', 'Approved'),
-        ('R', 'Rejected'),
+        ('P', _('Pending')),
+        ('A', _('Approved')),
+        ('R', _('Rejected')),
     ))
     request_class = models.ForeignKey(Class, verbose_name=_('class'), on_delete=models.CASCADE, null=True, blank=True)
     reason = models.TextField(verbose_name=_('reason'))
