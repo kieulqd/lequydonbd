@@ -520,9 +520,9 @@ class CustomPasswordResetView(PasswordResetView):
     extra_email_context = {'site_admin_email': settings.SITE_ADMIN_EMAIL}
 
     def post(self, request, *args, **kwargs):
-        key = f'pwreset!{request.META["REMOTE_ADDR"]}'
-        cache.add(key, 0, timeout=settings.DMOJ_PASSWORD_RESET_LIMIT_WINDOW)
-        if cache.incr(key) > settings.DMOJ_PASSWORD_RESET_LIMIT_COUNT:
-            return HttpResponse(_('You have sent too many password reset requests. Please try again later.'),
-                                content_type='text/plain', status=429)
+        #key = f'pwreset!{request.META["REMOTE_ADDR"]}'
+        #cache.add(key, 0, timeout=settings.DMOJ_PASSWORD_RESET_LIMIT_WINDOW)
+        #if cache.incr(key) > settings.DMOJ_PASSWORD_RESET_LIMIT_COUNT:
+        #    return HttpResponse(_('You have sent too many password reset requests. Please try again later.'),
+        #                        content_type='text/plain', status=429)
         return super().post(request, *args, **kwargs)
