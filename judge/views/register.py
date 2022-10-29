@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import get_default_password_validators
 from django.forms import ChoiceField, ModelChoiceField
 from django.shortcuts import render
-from django.utils.translation import gettext, gettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _, ngettext
 from registration.backends.default.views import (ActivationView as OldActivationView,
                                                  RegistrationView as OldRegistrationView)
 from registration.forms import RegistrationForm
@@ -52,6 +52,14 @@ class CustomRegistrationForm(RegistrationForm):
         return self.cleaned_data['email']
 
     full_name = forms.CharField(max_length=30, label=_('Full name'), required=False)
+    def clean_organizations(self):
+        organizations = self.cleaned_data.get('organizations') or []
+        max_orgs = settings.DMOJ_USER_MAX_ORGANIZATION_COUNT
+        if len(organizations) > max_orgs:
+            raise forms.ValidationError(ngettext('You may not be part of more than {count} public organization.',
+                                                 'You may not be part of more than {count} public organizations.',
+                                                 max_orgs).format(count=max_orgs))
+        return self.cleaned_data['organizations']
 
 
 class RegistrationView(OldRegistrationView):
