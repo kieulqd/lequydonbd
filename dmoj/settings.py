@@ -53,7 +53,7 @@ NODEJS = '/usr/bin/node'
 EXIFTOOL = '/usr/bin/exiftool'
 ACE_URL = '//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3'
 SELECT2_JS_URL = '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'
-DEFAULT_SELECT2_CSS = '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'
+SELECT2_CSS_URL = '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'
 
 DMOJ_CAMO_URL = None
 DMOJ_CAMO_KEY = None
@@ -85,6 +85,7 @@ DMOJ_USER_DATA_DOWNLOAD = False
 DMOJ_USER_DATA_CACHE = ''
 DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
 DMOJ_COMMENT_VOTE_HIDE_THRESHOLD = -5
+DMOJ_COMMENT_REPLY_TIMEFRAME = datetime.timedelta(days=365)
 DMOJ_PDF_PROBLEM_CACHE = ''
 DMOJ_PDF_PROBLEM_TEMP_DIR = tempfile.gettempdir()
 DMOJ_STATS_SUBMISSION_RESULT_COLORS = {
@@ -587,8 +588,6 @@ SOCIAL_AUTH_GITHUB_SECURE_SCOPE = ['user:email']
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_SLUGIFY_USERNAMES = True
 SOCIAL_AUTH_SLUGIFY_FUNCTION = 'judge.social_auth.slugify_username'
-
-JUDGE_AMQP_PATH = None
 
 MOSS_API_KEY = None
 

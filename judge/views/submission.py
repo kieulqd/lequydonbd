@@ -221,6 +221,7 @@ def filter_submissions_by_visible_problems(queryset, user):
         params=[],
         join_fields=[('problem_id', 'id')],
         alias='visible_problems',
+        related_model=Problem,
     )
 
 
@@ -447,7 +448,7 @@ class ProblemSubmissionsBase(SubmissionsListBase):
 
     def get(self, request, *args, **kwargs):
         if 'problem' not in kwargs:
-            raise ImproperlyConfigured(_('Must pass a problem'))
+            raise ImproperlyConfigured('Must pass a problem')
         self.problem = get_object_or_404(Problem, code=kwargs['problem'])
         self.problem_name = self.problem.translated_name(self.request.LANGUAGE_CODE)
         return super(ProblemSubmissionsBase, self).get(request, *args, **kwargs)
@@ -589,7 +590,7 @@ class ForceContestMixin(object):
 
     def get(self, request, *args, **kwargs):
         if 'contest' not in kwargs:
-            raise ImproperlyConfigured(_('Must pass a contest'))
+            raise ImproperlyConfigured('Must pass a contest')
         self._contest = get_object_or_404(Contest, key=kwargs['contest'])
         return super(ForceContestMixin, self).get(request, *args, **kwargs)
 
