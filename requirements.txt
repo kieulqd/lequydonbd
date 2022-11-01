@@ -36,7 +36,7 @@ netaddr
 webauthn<1
 bleach<5
 python-memcached
-django-newsletter @ git+git://github.com/DMOJ/django-newsletter.git
+#django-newsletter @ git+git://github.com/DMOJ/django-newsletter.git
 selenium
 redis
 uwsgi
@@ -46,3 +46,4 @@ django-recaptcha2
 icalendar
 # This is a celery dependency whose latest major version is breaking everything.
 importlib-metadata<5
+social-auth-app-django

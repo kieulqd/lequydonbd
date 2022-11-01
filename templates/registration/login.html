@@ -60,7 +60,7 @@
             <div>
                 {% if form.has_google_auth %}
                     <a href="{{ url('social:begin', "google-oauth2") }}?next={{ next }}" class="social google-icon">
-                        <i class="fa fa-google-plus-square"></i>
+                        <img src="https://accounts.google.com/favicon.ico" alt="" width="32" height="32">
                     </a>
                 {% endif %}
                 {% if form.has_facebook_auth %}
