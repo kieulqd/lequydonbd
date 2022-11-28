@@ -18,7 +18,7 @@
 }
 
 a {
-    color: #09806d;
+    color: $highlight_blue;
 
     &:hover {
         color: #024f45;
@@ -229,7 +229,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    background-color: $widget_black;
+    background-color: $color_primary75;
     border-bottom: 5px solid $highlight_blue;
     box-shadow: 0 0 5px black;
 }
