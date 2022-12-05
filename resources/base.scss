@@ -96,6 +96,14 @@ div.info-float {
     padding: 10px;
 }
 
+footer {
+    color: $color_primary50;
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
 body {
     position: relative;
     min-height: 100%;
@@ -105,7 +113,7 @@ body {
     line-height: 1.231;
     background: $color_primary5;
     font-family: "Source Sans Pro", "Lucida Grande", Arial, sans-serif;
-    color: #000;
+    color: $color_primary100;
     height: 100%;
 }
 
@@ -217,7 +225,7 @@ header {
 }
 
 #nav-container {
-    background: $color_primary75;
+    background: #3b3b3b;
 
     // opacity: 0.77
     // filter: alpha(opacity=77)
@@ -303,14 +311,14 @@ nav {
                 left: 5px;
                 display: none;
                 color: #fff;
-                background: $color_primary75;
+                background: #3b3b3b;
                 margin: 0 !important;
                 box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 
                 li {
                     &:first-child {
                         a.active {
-                            border-top: 1px solid $color_primary75;
+                            border-top: 1px solid #3b3b3b;
                         }
                     }
                 }
@@ -377,7 +385,7 @@ hr {
     display: block;
 
     .title {
-        color: #393630;
+        color: $color_primary75;
     }
 }
 
@@ -396,7 +404,7 @@ footer {
 }
 
 #footer-content {
-    
+    background: $color_primary10;
 }
 
 html {
@@ -444,7 +452,7 @@ noscript #noscript {
 }
 
 .time {
-    color: #555;
+    color: $color_primary75;
 }
 
 .toggle {
@@ -532,7 +540,7 @@ noscript #noscript {
     margin: 0 auto;
     border-right: 1px solid $color_primary25;
     border-left: 1px solid $color_primary25;
-    background: white;
+    background: $color_pageBg;
 }
 
 // border-bottom: 1px solid rgb(204, 204, 204)
@@ -598,7 +606,7 @@ math {
         border-left: 4px solid $highlight_blue;
         position: fixed;
         top: 36px;
-        background: $color_primary75;
+        background: #3b3b3b;
         bottom: 0;
         width: 8em;
         left: 0;
