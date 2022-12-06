@@ -225,7 +225,7 @@ header {
 }
 
 #nav-container {
-    background: #3b3b3b;
+    background: #1e1e1e;
 
     // opacity: 0.77
     // filter: alpha(opacity=77)
@@ -311,14 +311,14 @@ nav {
                 left: 5px;
                 display: none;
                 color: #fff;
-                background: #3b3b3b;
+                background: #1e1e1e;
                 margin: 0 !important;
                 box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 
                 li {
                     &:first-child {
                         a.active {
-                            border-top: 1px solid #3b3b3b;
+                            border-top: 1px solid #1e1e1e;
                         }
                     }
                 }
@@ -606,7 +606,7 @@ math {
         border-left: 4px solid $highlight_blue;
         position: fixed;
         top: 36px;
-        background: #3b3b3b;
+        background: #1e1e1e;
         bottom: 0;
         width: 8em;
         left: 0;
