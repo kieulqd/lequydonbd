@@ -393,14 +393,7 @@ footer {
     text-align: center;
     height: 40px;
     border-top: 1px solid $color_primary25;
-    background: #ededed;
-    width:100%;
-    position: absolute;
-    display: block;
-    padding-top: 10px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    background: $color_primary10;
 }
 
 #footer-content {
