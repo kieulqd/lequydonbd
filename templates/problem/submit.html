@@ -119,6 +119,17 @@
                         $('#problem_submit').find(':submit').attr('disabled', false);
                     }
                 });
+                $('#id_file_submit').change(function (event) {
+                    var file = event.target.files[0];
+                    if (file === undefined) {
+                        return;
+                    }
+                    var fileReader = new FileReader();
+                    fileReader.onload = function () {
+                        window.ace_source.getSession().setValue(fileReader.result);
+                    };
+                    fileReader.readAsText(file);
+                });
             });
         </script>
     {% endcompress %}
@@ -256,6 +267,7 @@
             <span style="color: red">{{ _('No judge is available for this problem.') }}</span>
         {% else %}
             <div class="submit-bar">
+                <input type="file" id="id_file_submit">
                 {{ form.judge }}
                 <input type="submit" value="{{ _('Submit!') }}" class="button"
                        {% if request.in_contest and submission_limit and not submissions_left %}disabled{% endif %}>
