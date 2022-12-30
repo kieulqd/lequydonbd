@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import shutil
 
 import yaml
 from django.conf import settings
@@ -46,6 +47,7 @@ class ProblemDataError(Exception):
 
 
 class ProblemDataCompiler(object):
+    CUSTOM_CHECKER_TEMPLATE_PATH = 'templates/custom_checker_template.py'
     def __init__(self, problem, data, cases, files):
         self.problem = problem
         self.data = data
@@ -62,8 +64,41 @@ class ProblemDataCompiler(object):
             if not batch['batched']:
                 raise ProblemDataError(_('Empty batches not allowed.'))
             cases.append(batch)
+        
+        def make_checker_for_validator(case):
+            checker_name = 'custom_checker.py'
+            native_checker_path = split_path_first(case.custom_checker.name)
+            problem_id = native_checker_path[0]
+            native_custom_checker_name = native_checker_path[1]
 
+            checker_path = os.path.join(settings.DMOJ_PROBLEM_DATA_ROOT,
+                                        problem_id,
+                                        checker_name)
+
+            shutil.copy(ProblemDataCompiler.CUSTOM_CHECKER_TEMPLATE_PATH, checker_path)
+
+            # replace {{filecpp}} and {{problemid}} in checker file
+            with open(checker_path, 'r') as custom_checker:
+                native_file_content = custom_checker.read()
+                native_file_content = native_file_content.replace('{{filecpp}}', "\'%s\'" % native_custom_checker_name)
+                native_file_content = native_file_content.replace('{{problemid}}', "\'%s\'" % problem_id)
+
+            with open(checker_path, 'w') as custom_checker:
+                custom_checker.write(native_file_content)
+
+            return checker_name
+        
         def make_checker(case):
+            
+            if case.checker == 'custom_py':
+                checker_path = split_path_first(case.custom_checker.name)
+                if len(checker_path) != 2:
+                    raise ProblemDataError(_('Checker file path is invalid %s') % case.custom_checker.name)
+                return checker_path[1]
+
+            if case.checker == 'custom_cpp':
+                return make_checker_for_validator(case)
+            
             if case.checker_args:
                 return {
                     'name': case.checker,
@@ -184,11 +219,6 @@ class ProblemDataCompiler(object):
             hints.append('unicode')
         if self.data.nobigmath:
             hints.append('nobigmath')
-        if self.data.custom_checker:
-            checker_path = split_path_first(self.data.custom_checker.name)
-            if len(checker_path) != 2:
-                raise ProblemDataError(_('How did you corrupt the checker path?'))
-            init['checker'] = checker_path[1]
         elif self.data.checker:
             init['checker'] = make_checker(self.data)
         else:

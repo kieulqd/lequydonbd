@@ -1,6 +1,7 @@
 import errno
 import os
 
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -28,6 +29,8 @@ CHECKERS = (
     ('sorted', _('Unordered')),
     ('identical', _('Byte identical')),
     ('linecount', _('Line-by-line')),
+    ('custom_py', _('Customer checker') + ' (Python)'),
+    ('custom_cpp', _('Customer checker') + ' (CPP)'),
 )
 
 
@@ -42,8 +45,7 @@ class ProblemData(models.Model):
     output_limit = models.IntegerField(verbose_name=_('output limit length'), blank=True, null=True)
     feedback = models.TextField(verbose_name=_('init.yml generation feedback'), blank=True)
     checker = models.CharField(max_length=10, verbose_name=_('checker'), choices=CHECKERS, blank=True)
-    custom_checker = models.FileField(verbose_name=_('custom checker file'), storage=problem_data_storage, null=True, blank=True,
-                                 upload_to=problem_directory_file)
+    custom_checker = models.FileField(verbose_name=_('checker file'), storage=problem_data_storage, null=True, blank=True, upload_to=problem_directory_file, validators=[FileExtensionValidator(allowed_extensions=['py', 'cpp'])])
     unicode = models.BooleanField(verbose_name=_('enable unicode'), null=True, blank=True)
     nobigmath = models.BooleanField(verbose_name=_('disable bigInteger / bigDecimal'), null=True, blank=True)
     checker_args = models.TextField(verbose_name=_('checker arguments'), blank=True,

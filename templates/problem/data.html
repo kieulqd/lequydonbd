@@ -92,7 +92,16 @@
                 handle_table_reorder();
             }
 
+            function checker_file($checker, $checker_file) {
+                $tr = $checker_file.parent().parent();
+                $checker.change(function () {
+                    $tr.toggle($checker.val().startsWith('custom')).change();
+                }).change();
+            }
+            
             checker_precision($('#id_problem-data-checker'));
+
+            checker_file($('#id_problem-data-checker'), $('#id_problem-data-checker_file'));
 
             $table.on('add-row', function (e, $tr) {
                 var $order = $tr.find('input').filter('[id$=order]').attr('type', 'hidden').val(++order);
@@ -472,7 +481,7 @@
         {% csrf_token %}
         {{ cases_formset.management_form }}
         <table class="table">{{ data_form.as_table() }}
-        <th>
+            <th>
                 <label>Autofill testcases:</label>
             </th>
             <td>
@@ -487,6 +496,11 @@
                 </a>
             </td>
         </table>
+        <p align="right">
+            <b>
+                <a href="/about/custom-checker/">Custom checker tutorial</a>
+            </b>
+        </p>
         <input type="submit" value="{{ _('Submit!') }}" class="button">
         <div id="column-visible" data-problem="{{ problem.code }}">
             <strong>{{ _('Show columns:') }}</strong>
