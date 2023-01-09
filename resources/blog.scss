@@ -7,11 +7,16 @@
     margin-right: 0;
 
     .post {
-        border: 1px solid $color_primary25;
-        padding: 1.2em;
-        margin-bottom: 1.2em;
-        border-radius: $widget_border_radius;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        border-bottom: 2px solid $color_primary25;
+        margin: 0.5em 1.4em;
+
+        &:first-child {
+            margin-top: 1.1em;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
 
         .title {
             font-weight: 600;
@@ -30,8 +35,12 @@
             }
         }
 
-        &:last-child {
-            border-bottom: none;
+        .comment-count-link {
+            color: $color_primary75;
+        }
+
+        .comment-icon {
+            padding: 0 0.2em 0 0.5em;
         }
     }
 }
@@ -118,4 +127,20 @@
             display: block;
         }
     }
+}
+
+.open-tickets {
+    .object {
+        margin-left: 1em;
+        font-style: italic;
+    }
+
+    .author {
+        margin-left: 1em;
+    }
+}
+
+.no-clarifications-message {
+    font-style: italic;
+    text-align: center;
 }
