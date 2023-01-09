@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('judge', '0134_add_voting_functionality'),
+        ('judge', '0138_support_cpp_checker'),
     ]
 
     operations = [
