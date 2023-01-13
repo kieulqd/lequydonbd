@@ -6,7 +6,13 @@
     right: 0;
     position: absolute;
     height: 100%;
-
+    display: inline-flex;
+    align-items: center;
+    
+    #flag_language {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
     .anon {
         padding-right: 10px;
         display: inline-flex;
@@ -66,7 +72,7 @@
 }
 
 #nav-container {
-    background: #3b3b3b;
+    background: #1e1e1e;
 
     // opacity: 0.77
     // filter: alpha(opacity=77)
@@ -79,7 +85,9 @@ nav {
     left: 0;
     right: 0;
     z-index: 500;
-
+    border-bottom: 5px solid $highlight_blue;
+    box-shadow: 0 0 5px black;
+    
     ul {
         margin: 0 0 0 -5px;
         padding: 0 0 0 1%;
@@ -116,7 +124,7 @@ nav {
 
                 &:hover {
                     color: #FFF;
-                    background: rgba(255, 255, 255, 0.25);
+                    background: #064d41;
                     margin: 0;
                 }
 
@@ -136,7 +144,7 @@ nav {
                 left: 5px;
                 display: none;
                 color: #fff;
-                background: #3b3b3b;
+                background: #1e1e1e;
                 margin: 0 !important;
                 box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 
@@ -228,7 +236,7 @@ nav {
         margin: 0;
         position: fixed;
         top: 36px;
-        background: #3b3b3b;
+        background: #1e1e1e;
         bottom: 0;
         width: 8em;
         left: 0;
