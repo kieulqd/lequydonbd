@@ -26,7 +26,7 @@ CHECKERS = (
     ('floatsabs', _('Floats (absolute)')),
     ('floatsrel', _('Floats (relative)')),
     ('rstripped', _('Non-trailing spaces')),
-    ('sorted', _('Unordered')),
+    ('sorted', _('Sorted')),
     ('identical', _('Byte identical')),
     ('linecount', _('Line-by-line')),
     ('custom_py', _('Customer checker') + ' (Python)'),
