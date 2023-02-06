@@ -390,6 +390,7 @@ def edit_profile(request):
 
     return render(request, 'user/edit-profile.html', {
         'require_staff_2fa': settings.DMOJ_REQUIRE_STAFF_2FA,
+        "form_user": form_user,
         'form': form, 'title': _('Edit profile'), 'profile': request.profile,
         'can_download_data': bool(settings.DMOJ_USER_DATA_DOWNLOAD),
         'has_math_config': bool(settings.MATHOID_URL),
