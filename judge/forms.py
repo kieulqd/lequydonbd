@@ -58,12 +58,12 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['about', 'organizations', 'timezone', 'language', 'ace_theme', 'user_script']
+        fields = ['about', 'organizations', 'timezone', 'language', 'ace_theme', 'site_theme', 'user_script']
         widgets = {
-            'user_script': AceWidget(theme='github'),
             'timezone': Select2Widget(attrs={'style': 'width:200px'}),
             'language': Select2Widget(attrs={'style': 'width:200px'}),
             'ace_theme': Select2Widget(attrs={'style': 'width:200px'}),
+            'site_theme': Select2Widget(attrs={'style': 'width:200px'}),
         }
 
         has_math_config = bool(settings.MATHOID_URL)
@@ -102,6 +102,7 @@ class ProfileForm(ModelForm):
             )
         if not self.fields['organizations'].queryset:
             self.fields.pop('organizations')
+        self.fields['user_script'].widget = AceWidget(theme=user.profile.ace_theme, mode='javascript')
 
 
 class DownloadDataForm(Form):

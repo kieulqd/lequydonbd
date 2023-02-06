@@ -11,6 +11,7 @@
             }));
             var in_user_redirect = false;
             $('#search-handle').select2({
+                theme: '{{ DMOJ_SELECT2_THEME }}',
                 placeholder: '{{ _('Search by handle...') }}',
                 ajax: {
                     url: '{{ url('user_search_select2_ajax') }}'
@@ -64,9 +65,7 @@
             {% block before_users_table %}{% endblock %}
 
             <div class="h-scrollable-table">
-                <table id="users-table" class="table striped">
-                    {% block users_table %}{% endblock %}
-                </table>
+                {% block users_table %}{% endblock %}
             </div>
         </div>
     </div>

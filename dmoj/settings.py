@@ -101,6 +101,13 @@ DMOJ_API_PAGE_SIZE = 1000
 DMOJ_PASSWORD_RESET_LIMIT_WINDOW = 3600
 DMOJ_PASSWORD_RESET_LIMIT_COUNT = 10
 
+# At the bare minimum, dark and light theme CSS file locations must be declared
+DMOJ_THEME_CSS = {
+    'light': 'style.css',
+    'dark': 'dark/style.css',
+}
+DMOJ_SELECT2_THEME = 'dmoj'
+
 MARKDOWN_STYLES = {}
 MARKDOWN_DEFAULT_STYLE = {}
 
@@ -122,8 +129,7 @@ BAD_MAIL_PROVIDERS = ()
 BAD_MAIL_PROVIDER_REGEX = ()
 NOFOLLOW_EXCLUDED = set()
 
-TIMEZONE_BG = None
-TIMEZONE_MAP = None
+TIMEZONE_MAP = 'https://static.dmoj.ca/assets/earth.jpg'
 
 TERMS_OF_SERVICE_URL = None
 DEFAULT_USER_LANGUAGE = 'PY3'
@@ -349,6 +355,7 @@ TEMPLATES = [
                 'judge.template_context.general_info',
                 'judge.template_context.site',
                 'judge.template_context.site_name',
+                'judge.template_context.site_theme',
                 'judge.template_context.misc_config',
                 'judge.template_context.math_setting',
                 'social_django.context_processors.backends',

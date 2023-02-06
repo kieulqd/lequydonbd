@@ -186,3 +186,107 @@ form.contest-join-pseudotab {
 
     padding: 0 5px;
 }
+
+#ranking-table {
+    .user-name {
+        min-width: 20em;
+        position: relative;
+    }
+
+    .userinfo a, .user-name a, .user-name form {
+        display: inline-block !important;
+    }
+
+    .rating-column {
+        min-width: 3em;
+    }
+
+    td {
+        height: 2.5em;
+
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+
+    a {
+        display: block;
+    }
+
+    /* Make problem table headers green on hover */
+    th a:hover {
+        color: #0F0;
+    }
+
+    .rank {
+        min-width: 2.5em
+    }
+
+    .points {
+        min-width: 4em;
+    }
+
+    .disqualified {
+        background-color: $color_contest_ranking_disqualified !important;
+    }
+
+    .full-score, .full-score a {
+        font-weight: bold;
+        color: green;
+    }
+
+    .partial-score, .partial-score a {
+        color: green;
+    }
+
+    .failed-score, .failed-score a {
+        font-weight: bold;
+        color: red;
+    }
+
+    .pretest-full-score, .pretest-full-score a {
+        font-weight: bold;
+        color: #2980b9;
+    }
+
+    .pretest-partial-score, .pretest-partial-score a {
+        color: #2980b9;
+    }
+
+    .pretest-failed-score, .pretest-failed-score a {
+        font-weight: bold;
+        color: red;
+    }
+
+    .user-points, .user-points a {
+        font-weight: bold;
+        color: $color_primary100;
+    }
+
+    .solving-time {
+        color: $color_primary50;
+        font-weight: normal;
+        font-size: 0.75em;
+        padding-bottom: -0.75em;
+    }
+
+    .point-denominator {
+        border-top: 1px solid $color_primary50;
+        font-size: 0.7em;
+    }
+
+    .start-time {
+        display: none;
+    }
+
+    .organization-column {
+        display: none;
+        text-align: left !important;
+        border-right: none !important;
+
+        a {
+            color: $color_primary50;
+            font-weight: 600;
+        }
+    }
+}
