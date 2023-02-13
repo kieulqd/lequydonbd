@@ -1521,8 +1521,8 @@ msgid "link"
 msgstr "liên kết"
 
 #: judge/models/problem.py:63
-msgid "full name"
-msgstr "tên đầy đủ"
+msgid "Full name"
+msgstr "Họ và tên"
 
 #: judge/models/problem.py:64 judge/models/profile.py:45
 #: judge/models/runtime.py:24
