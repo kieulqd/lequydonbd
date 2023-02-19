@@ -11,7 +11,8 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.db import transaction
-from django.db.models import BooleanField, Case, CharField, Count, F, FilteredRelation, Prefetch, Q, When
+from django.db.models import BooleanField, Case, CharField, Count, Exists, F, FilteredRelation, OuterRef, Prefetch, Q, \
+    When
 from django.db.models.functions import Coalesce
 from django.db.utils import ProgrammingError
 from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseRedirect, JsonResponse
@@ -365,12 +366,9 @@ class ProblemList(QueryStringSortMixin, TitleMixin, SolvedProblemMixin, ListView
     def get_paginator(self, queryset, per_page, orphans=0,
                       allow_empty_first_page=True, **kwargs):
         paginator = DiggPaginator(queryset, per_page, body=6, padding=2, orphans=orphans,
+                                  count=queryset.values('pk').count() if not self.in_contest else None,
                                   allow_empty_first_page=allow_empty_first_page, **kwargs)
         if not self.in_contest:
-            # Get the number of pages and then add in this magic.
-            # noinspection PyStatementEffect
-            paginator.num_pages
-
             queryset = queryset.add_i18n_name(self.request.LANGUAGE_CODE)
             sort_key = self.order.lstrip('-')
             if sort_key in self.sql_sort:
@@ -449,9 +447,11 @@ class ProblemList(QueryStringSortMixin, TitleMixin, SolvedProblemMixin, ListView
                 org_filter |= Q(organizations__in=self.profile.organizations.all())
             filter &= org_filter
         if self.profile is not None:
-            filter |= Q(authors=self.profile)
-            filter |= Q(curators=self.profile)
-            filter |= Q(testers=self.profile)
+            # This is way faster than the obvious |= Q(authors=self.profile) et al. because we are not doing
+            # joins and then cleaning it up with .distinct().
+            filter |= Exists(Problem.authors.through.objects.filter(problem=OuterRef('pk'), profile=self.profile))
+            filter |= Exists(Problem.curators.through.objects.filter(problem=OuterRef('pk'), profile=self.profile))
+            filter |= Exists(Problem.testers.through.objects.filter(problem=OuterRef('pk'), profile=self.profile))
         queryset = Problem.objects.filter(filter).select_related('group').defer('description', 'summary')
         if self.profile is not None and self.hide_solved:
             queryset = queryset.exclude(id__in=Submission.objects.filter(user=self.profile, points=F('problem__points'))

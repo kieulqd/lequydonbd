@@ -390,10 +390,19 @@ class Contest(models.Model):
         if not user.is_authenticated:
             return False
 
-        if user.profile.id in self.editor_ids or user.profile.id in self.tester_ids:
+        # Can be populated using annotate for performance in list views.
+        editor_or_tester = getattr(self, 'editor_or_tester', None)
+        if editor_or_tester is None:
+            editor_or_tester = user.profile.id in self.editor_ids or user.profile.id in self.tester_ids
+
+        if editor_or_tester:
             return False
 
-        if self.has_completed_contest(user):
+        completed_contest = getattr(self, 'completed_contest', None)
+        if completed_contest is None:
+            completed_contest = self.has_completed_contest(user)
+
+        if completed_contest:
             return False
 
         if self.limit_join_organizations:

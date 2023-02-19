@@ -21,7 +21,7 @@ from reversion import revisions
 from judge.forms import EditOrganizationForm
 from judge.models import Class, Organization, OrganizationRequest, Profile
 from judge.utils.ranker import ranker
-from judge.utils.views import QueryStringSortMixin, TitleMixin, generic_message
+from judge.utils.views import DiggPaginatorMixin, QueryStringSortMixin, TitleMixin, generic_message
 
 __all__ = ['OrganizationList', 'OrganizationHome', 'OrganizationUsers', 'OrganizationMembershipChange',
            'JoinOrganization', 'LeaveOrganization', 'EditOrganization', 'RequestJoinOrganization',
@@ -62,6 +62,21 @@ class OrganizationMixin(object):
             return False
         profile_id = self.request.profile.id
         return org.admins.filter(id=profile_id).exists()
+
+
+class BaseOrganizationListView(OrganizationMixin, ListView):
+    model = None
+    context_object_name = None
+
+    def get_object(self):
+        return Organization.objects.get(id=self.kwargs.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(organization=self.object, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().get(request, *args, **kwargs)
 
 
 class OrganizationDetailView(OrganizationMixin, DetailView):
@@ -107,20 +122,28 @@ class OrganizationHome(OrganizationDetailView):
         return context
 
 
-class OrganizationUsers(QueryStringSortMixin, OrganizationDetailView):
+class OrganizationUsers(QueryStringSortMixin, DiggPaginatorMixin, BaseOrganizationListView):
     template_name = 'organization/users.html'
     all_sorts = frozenset(('problem_count', 'rating', 'performance_points'))
     default_desc = all_sorts
     default_sort = '-performance_points'
+    paginate_by = 100
+    context_object_name = 'users'
+
+    def get_queryset(self):
+        return self.object.members.filter(is_unlisted=False).order_by(self.order).select_related('user') \
+            .defer('about', 'user_script', 'notes')
 
     def get_context_data(self, **kwargs):
         context = super(OrganizationUsers, self).get_context_data(**kwargs)
         context['title'] = _('%s Members') % self.object.name
-        context['users'] = users_for_template(self.object.members, self.order)
+        context['users'] = ranker(context['users'])
         context['partial'] = True
         context['is_admin'] = self.can_edit_organization()
         context['kick_url'] = reverse('organization_user_kick', args=[self.object.id, self.object.slug])
+        context['first_page_href'] = '.'
         context.update(self.get_sort_context())
+        context.update(self.get_sort_paginate_context())
         return context
 
 
