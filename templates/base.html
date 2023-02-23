@@ -301,17 +301,18 @@
         <div id="content-body">{% block body %}{% endblock %}</div>
     </main>
 
-    {% if i18n_config.announcement %}
-        <div id="announcement">{{ i18n_config.announcement|safe }}</div>
+    {% if misc_config.announcement %}
+        <div id="announcement">{{ misc_config.announcement|safe }}</div>
     {% endif %}
 
     {% block bodyend %}{% endblock %}
 
     <footer id="footer-page">
         <span id="footer-content">
-            <a style="color: #808080" href="https://dmoj.ca">{{ _('proudly powered by **DMOJ**')|markdown('default', strip_paragraphs=True) }}</a> | <a style="color: #09806d" href="https://github.com/kieulqd/site"> <b>oj.lequydon.net</b> Source Code</a>
-            {% if i18n_config.footer %}
-                {{ i18n_config.footer|safe }} |
+            <br>
+            <a style="color: #808080" href="https://dmoj.ca">{{ _('proudly powered by **DMOJ**')|markdown('default', strip_paragraphs=True) }}</a> | <a href="https://github.com/kieulqd/site"> <b>oj.lequydon.net</b> Source Code</a>
+            {% if misc_config.footer %}
+                {{ misc_config.footer|safe }} |
             {% endif %}
             <form id="set_language" action="{{ url('set_language') }}" method="post" style="display: inline">
                 {% csrf_token %}
